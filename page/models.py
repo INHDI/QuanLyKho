@@ -11,12 +11,12 @@ class MeasurementUnit(models.Model):
 
 class Product(models.Model):
     product_name = models.CharField(max_length=200, null=False)
-    size = models.CharField(max_length=200, null=True)
+    size = models.CharField(max_length=200, blank=True, null=True)
     c_time = models.DateTimeField(auto_now_add=True)
     dvt = models.ForeignKey(MeasurementUnit, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.product_name + " - " + self.size
+        return self.product_name + " - " + self.size if self.size is not None else self.product_name
 
 
 # Nhập hàng
